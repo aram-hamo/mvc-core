@@ -10,7 +10,7 @@ class DB {
         $GLOBALS["dsn"] = "mysql:host=". CONFIG["DATABASE"]["HOST"].";dbname=". CONFIG["DATABASE"]["DATABASE"];
       break;
       case "sqlite":
-        $GLOBALS["dsn"] = "sqlite:/".__DIR__."/../". CONFIG["DATABASE"]["PATH"];
+        $GLOBALS["dsn"] = "sqlite:/".__DIR__."/../../../../". CONFIG["DATABASE"]["PATH"];
       break;
     }
     try{
