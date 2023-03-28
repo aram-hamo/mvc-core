@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 namespace AramHamo\MvcCore;
-use  AramHamo\Mvc\DB;
+use  AramHamo\MvcCore\DB;
 
 class Schema extends DB{
 /*{{{create*/
