@@ -6,16 +6,16 @@ class Controller{
     public static function serve($c){
       $method = $_SERVER["REQUEST_METHOD"] ?? "GET";
       if($method == "GET"){
-        $c->get();
+        return $c->get();
 
       }else if($method == "POST"){
-        $c->post();
+        return $c->post();
 
       }else if($method == "UPDATE"){
-        $c->update();
+        return $c->update();
 
       }else if($method == "DELETE"){
-        $c->delete();
+        return $c->delete();
       }
     }
 }
