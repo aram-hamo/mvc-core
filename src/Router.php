@@ -6,6 +6,15 @@ use AramHamo\MvcCore\Routes;
 
 class Router{
   public function listen($req){
+  if(CONFIG["DEBUG_MODE"]){
+    ini_set("display_errors","On");
+    ini_set("display_startup_errors","On");
+    ini_set("log_errors","On");
+  }else{
+    ini_set("display_errors","Off");
+    ini_set("display_startup_errors","Off");
+    ini_set("log_errors","Off");
+  }
 
   $req = strtolower($req);
   $exlen = strlen($req);
