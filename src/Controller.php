@@ -3,8 +3,11 @@ namespace AramHamo\MvcCore;
 use AramHamo\Mvc\Controllers\Home;
 
 class Controller{
-    public static function serve($c){
+    public static function serve($c,$m=""){
       $method = $_SERVER["REQUEST_METHOD"] ?? "GET";
+      if(!empty($m)){
+        $method = $m;
+      }
       if($method == "GET"){
         return $c->get();
 

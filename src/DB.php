@@ -17,7 +17,9 @@ class DB {
       $this->conn = new \PDO($GLOBALS["dsn"]);
       $this->conn->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
     }catch(Exception $e){
-      echo $e;
+      if(CONFIG["DEBUG_MODE"]){
+        echo $e;
+      }
     }
   }
 }
