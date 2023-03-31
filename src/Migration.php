@@ -6,7 +6,11 @@ class Migration{
   public $options = '';
 /*{{{id*/
   public function id():Object{
-    $this->table["id"] = "id INTEGER PRIMARY KEY AUTOINCREMENT";
+    if(CONFIG["DATABASE"]["SOFTWARE"] == "sqlite"){
+      $this->table["id"] = "id INTEGER PRIMARY KEY AUTOINCREMENT";
+    }else{
+      $this->table["id"] = "id INTEGER PRIMARY KEY AUTO_INCREMENT";
+    }
     return $this;
   }
 /*}}}*/
