@@ -3,6 +3,7 @@ namespace AramHamo\MvcCore;
 use AramHamo\MvcCore\DB;
 
 class Model extends DB{
+/*{{{create*/
   function create(){
     $table = json_decode((json_encode($this)),true);
     $keys = array_keys($table);
@@ -42,20 +43,34 @@ class Model extends DB{
     $stmt = $this->conn->prepare("INSERT INTO $tableName ($keysFields) values ($valuesFields);");
     $stmt->execute($valuesArray);
   }
+/*}}}*/
+/*{{{showWhere*/
   function showWhere($key,$value){
     $tableName = tableName;
     $stmt = $this->conn->prepare("SELECT * FROM $tableName WHERE $key = ? ;");
     $stmt->execute([$value]);
     return $stmt->fetchAll();
   }
+/*}}}*/
+/*{{{deleteWhere*/
   function deleteWhere($key,$value){
     $tableName = tableName;
     $stmt = $this->conn->prepare("DELETE FROM $tableName WHERE $key = ? ;");
     return $stmt->execute([$value]);
   }
+/*}}}*/
+/*{{{updateWhere*/
   function updateWhere($setKey,$toValue,$whereKey,$value){
     $tableName = tableName;
     $stmt = $this->conn->prepare("UPDATE $tableName SET $setKey = ? WHERE $whereKey = ? ;");
     return $stmt->execute([$toValue,$value]);
   }
+/*}}}*/
+/*{{{query*/
+  function query($sql){
+    $stmt = $this->conn->prepare($sql);
+    $stmt->execute();
+    return $stmt->fetchAll();
+  }
+/*}}}*/
 }
