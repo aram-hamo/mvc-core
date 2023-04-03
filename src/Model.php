@@ -51,7 +51,11 @@ class Model extends DB{
   function deleteWhere($key,$value){
     $tableName = tableName;
     $stmt = $this->conn->prepare("DELETE FROM $tableName WHERE $key = ? ;");
-    $stmt->execute([$value]);
-    return $stmt->fetchAll();
+    return $stmt->execute([$value]);
+  }
+  function updateWhere($setKey,$toValue,$whereKey,$value){
+    $tableName = tableName;
+    $stmt = $this->conn->prepare("UPDATE $tableName SET $setKey = ? WHERE $whereKey = ? ;");
+    return $stmt->execute([$toValue,$value]);
   }
 }
