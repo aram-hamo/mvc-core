@@ -42,4 +42,10 @@ class Model extends DB{
     $stmt = $this->conn->prepare("INSERT INTO $tableName ($keysFields) values ($valuesFields);");
     $stmt->execute($valuesArray);
   }
+  function where($key,$value){
+    $tableName = tableName;
+    $stmt = $this->conn->prepare("SELECT * FROM $tableName WHERE $key = ? ;");
+    $stmt->execute([$value]);
+    return $stmt->fetchAll();
+  }
 }
