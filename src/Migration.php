@@ -36,9 +36,9 @@ class Migration{
 /*{{{int*/
   public function int(String $attr,int $length=0):Object{
     if($length < 1){
-      $this->table[$attr] = "$attr INT";
+      $this->table[$attr] = "$attr INTEGER";
     }else{
-      $this->table[$attr] = "$attr INT($length)";
+      $this->table[$attr] = "$attr INTEGER($length)";
     }
     return $this;
   }
@@ -76,6 +76,16 @@ class Migration{
 /*{{{notNull*/
   public function notNull($attr):Object{
     $this->table[$attr] .= " NOT NULL";
+    return $this;
+  }
+/*}}}*/
+/*{{{autoincrement*/
+  public function autoincrement($attr):Object{
+    if(CONFIG["DATABASE"]["SOFTWARE"] == "sqlite"){
+      $this->table[$attr] .= " AUTOINCREMENT";
+    }else{
+      $this->table[$attr] .= " AUTO_INCREMENT";
+    }
     return $this;
   }
 /*}}}*/
