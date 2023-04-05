@@ -17,11 +17,17 @@ class Schema extends DB{
       $i++;
     }
     $stmt = "CREATE TABLE IF NOT EXISTS $table_name (".$fields.$options.");";
+    if(CONFIG["GENERAL"]["DEBUG_MODE"]){
+      echo "$stmt\n";
+    }
     $createTable = $this->conn->exec($stmt);
   }
 /*}}}*/
 /*{{{dropIfExists*/
   public function dropIfExists(String $tableName){
+    if(CONFIG["GENERAL"]["DEBUG_MODE"]){
+      echo "DROP TABLE IF EXISTS ".$tableName."\n";
+    }
     $tdrop = $this->conn->prepare("DROP TABLE IF EXISTS ".$tableName);
     return $tdrop->execute();
   }
