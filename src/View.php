@@ -3,6 +3,9 @@ namespace AramHamo\MvcCore;
 
 class View{
   public static $viewData = array();
+  public static function viewData(){
+    return self::$viewData;
+  }
   public static function render(String $view,Array $viewData){
     self::$viewData = $viewData;
     return include __DIR__.'/../../../../views/'.$view.'.php';
