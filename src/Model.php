@@ -73,4 +73,11 @@ class Model extends DB{
     return $stmt->fetchAll();
   }
 /*}}}*/
+/*{{{resetThis*/
+  function resetThis(){
+    foreach ($this as $key => $value) {
+      unset($this->$key);
+    }
+  }
+/*}}}*/
 }
