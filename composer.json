@@ -2,6 +2,7 @@
     "name": "aram-hamo/mvc-core",
     "type": "library",
     "license": "GPL-3.0-or-later",
+    "description": " The core component of aram-hamo/mvc",
     "autoload": {
         "psr-4": {
             "AramHamo\\MvcCore\\": "src/"
