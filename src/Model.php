@@ -66,11 +66,15 @@ class Model extends DB{
     return $stmt->execute([$toValue,$value]);
   }
 /*}}}*/
-/*{{{query*/
-  function query($sql){
+/*{{{execute*/
+  function execute($sql){
     $stmt = $this->conn->prepare($sql);
     $stmt->execute();
-    return $stmt->fetchAll();
+  }
+/*}}}*/
+/*{{{query*/
+  function query($sql){
+    return $this->execute($sql)->fetchAll();
   }
 /*}}}*/
 /*{{{resetThis*/
