@@ -1,6 +1,5 @@
 <?php declare(strict_types=1);
 namespace AramHamo\MvcCore;
-use AramHamo\Mvc\Controllers\Home;
 
 class Controller{
     public static function serve($c,$m=""){
