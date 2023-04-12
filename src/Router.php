@@ -1,7 +1,5 @@
 <?php declare(strict_types=1);
 namespace AramHamo\MvcCore;
-use AramHamo\MvcCore\View;
-use AramHamo\MvcCore\Controller;
 use AramHamo\MvcCore\Routes;
 
 class Router{
