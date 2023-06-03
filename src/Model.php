@@ -8,15 +8,14 @@ class Model extends DB{
     $table = json_decode((json_encode($this)),true);
     $keys = array_keys($table);
     $valuesArray = [];
-    for($i = 0 ;$i < count($table);$i++){
+    for($i = 2 ;$i < count($table);$i++){
       $key = $keys[$i];
-      if($keys[$i] !== 'conn'){
-        $valuesArray[] = $table[$key];
-      }
+      $valuesArray[] = $table[$key];
     }
     $i = 0;
     $valuesFields= '';
     while($i < count($keys)-1){
+      if($keys[$i] == "_tableName") {$i++;continue;}
       if(count($keys)-2 == $i){
         $valuesFields .= '?';
       }else{
@@ -27,7 +26,9 @@ class Model extends DB{
     $i = 0;
     $keysFields= '';
     while($i < count($keys)){
-      if($keys[$i] !== 'conn'){
+      if($keys[$i] == "_tableName") {$i++;continue;}
+      if($keys[$i] == "conn") {$i++;continue;}
+      if($keys[$i] !== 'conn' || $keys[$i] !== '_tableName'){
         if(count($keys)-1 == $i){
           $keysFields .= $keys[$i];
         }else{
@@ -36,8 +37,10 @@ class Model extends DB{
       }
         $i++;
     }
-    $tableName = tableName;
+    $tableName = $table["_tableName"];
     foreach($table as $attr){
+      if($attr == "_tableName") {continue;}
+      if($attr == "conn") {continue;}
       $valuesList[] = $attr;
     }
     $stmt = $this->conn->prepare("INSERT INTO $tableName ($keysFields) values ($valuesFields);");
@@ -46,8 +49,7 @@ class Model extends DB{
 /*}}}*/
 /*{{{showWhere*/
   function showWhere($key,$value){
-    $tableName = tableName;
-    $stmt = $this->conn->prepare("SELECT * FROM $tableName WHERE $key = ? ;");
+    $stmt = $this->conn->prepare("SELECT * FROM $this->_tableName WHERE $key = ? ;");
     $stmt->execute([$value]);
     return $stmt->fetchAll();
   }
