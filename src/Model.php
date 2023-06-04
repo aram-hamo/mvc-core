@@ -76,7 +76,9 @@ class Model extends DB{
 /*}}}*/
 /*{{{query*/
   function query($sql){
-    return $this->execute($sql)->fetchAll();
+    $stmt = $this->conn->prepare($sql);
+    $stmt->execute();
+    return $stmt->fetchAll();
   }
 /*}}}*/
 /*{{{resetThis*/
